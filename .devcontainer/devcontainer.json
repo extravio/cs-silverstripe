@@ -1,0 +1,43 @@
+// https://github.com/microsoft/vscode-remote-try-php/blob/master/.devcontainer/devcontainer.json
+{
+	"name": "PHP",
+	"build": {
+		// "dockerfile": "Dockerfile",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "phpcs",
+    "runServices": [
+      "phpcs",
+      "mariadb"
+    ],
+
+		//"args": {       
+			// Update VARIANT to pick a PHP version
+			//"VARIANT": "7",
+			//"INSTALL_NODE": "true",
+			//"NODE_VERSION": "lts/*"
+		//}
+	},
+	
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"felixfbecker.php-debug",
+		"felixfbecker.php-intellisense"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  "forwardPorts": [8443],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+   "overrideCommand": false,
+  
+  "containerUser": "vscode",
+	// Comment out to use the root user instead. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
